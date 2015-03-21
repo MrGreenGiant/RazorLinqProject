@@ -12,30 +12,13 @@ namespace ChoresProject.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "Welcome to the Chores Page";
-            //Chore List Kitchen
+
             ChoreViewModel viewModel = new ChoreViewModel();
+            
+            //Variable to grab List of Data
+            var dataKitchen = DataHolder.GetChores();
 
-
-            List<Chores> kList = new List<Chores>()
-
-            {
-                new Chores(){ID=100, Chore="Kitchen Clean Table", ChoreAssigned=DateTime.Now.AddDays(-7), IsCompleted = false},
-                new Chores(){ID=101, Chore="Kitchen Wash Dishes", ChoreAssigned=DateTime.Now.AddDays(-6), IsCompleted = false},
-                new Chores(){ID=102, Chore="Kitchen Sweep Floor", ChoreAssigned=DateTime.Now.AddDays(-3), IsCompleted = false},
-                new Chores(){ID=103, Chore="Kitchen Clean Stove", ChoreAssigned=DateTime.Now.AddDays(-2), IsCompleted = false},
-                new Chores(){ID=104, Chore="Kitchen Clean Refrigerator", ChoreAssigned=DateTime.Now.AddDays(-4), IsCompleted = false},
-                new Chores(){ID=105, Chore="Kitchen Paint Walls Blue", ChoreAssigned=DateTime.Now.AddDays(-1), IsCompleted = false},
-                new Chores(){ID=106, Chore="Bedroom Vacuum Floors", ChoreAssigned=DateTime.Now.AddDays(-9), IsCompleted = false},
-                new Chores(){ID=107, Chore="Bedroom Wash Sheets", ChoreAssigned=DateTime.Now.AddDays(-10), IsCompleted = false},
-                new Chores(){ID=108, Chore="Bedroom Paint Room Green", ChoreAssigned=DateTime.Now.AddDays(-9), IsCompleted = false},
-                new Chores(){ID=109, Chore="Bedroom Wash Windows", ChoreAssigned=DateTime.Now.AddDays(-11), IsCompleted = false},
-                new Chores(){ID=110, Chore="Bedroom Clean Mirrors", ChoreAssigned=DateTime.Now.AddDays(-8), IsCompleted = false},
-
-            };
-
-
-
-            var Kdata2 = kList.Where(to => to.ID >= 100).ToList();
+            var Kdata2 = dataKitchen.Where(to => to.ID >= 100).ToList();
 
             viewModel.MyChores = Kdata2;
 
@@ -45,34 +28,28 @@ namespace ChoresProject.Controllers
         public ActionResult Kitchen()
         {
             ViewBag.Message = "Welcome to the Kitchen Page";
-            //Chore List Kitchen
+
+            /*
+             * Variable to grab List of DataHolder Class
+             */
             ChoreViewModel viewModel = new ChoreViewModel();
-
-
-            List<Chores> kList = new List<Chores>()
-
-            {
-                new Chores(){ID=100, Chore="Kitchen Clean Table", ChoreAssigned=DateTime.Now.AddDays(-7), IsCompleted = false},
-                new Chores(){ID=101, Chore="Kitchen Wash Dishes", ChoreAssigned=DateTime.Now.AddDays(-6), IsCompleted = false},
-                new Chores(){ID=102, Chore="Kitchen Sweep Floor", ChoreAssigned=DateTime.Now.AddDays(-3), IsCompleted = false},
-                new Chores(){ID=103, Chore="Kitchen Clean Stove", ChoreAssigned=DateTime.Now.AddDays(-2), IsCompleted = false},
-                new Chores(){ID=104, Chore="Kitchen Clean Refrigerator", ChoreAssigned=DateTime.Now.AddDays(-4), IsCompleted = false},
-                new Chores(){ID=105, Chore="Kitchen Paint Walls Blue", ChoreAssigned=DateTime.Now.AddDays(-1), IsCompleted = false},
-                new Chores(){ID=106, Chore="Bedroom Vacuum Floors", ChoreAssigned=DateTime.Now.AddDays(-9), IsCompleted = false},
-                new Chores(){ID=107, Chore="Bedroom Wash Sheets", ChoreAssigned=DateTime.Now.AddDays(-10), IsCompleted = false},
-                new Chores(){ID=108, Chore="Bedroom Paint Room Green", ChoreAssigned=DateTime.Now.AddDays(-9), IsCompleted = false},
-                new Chores(){ID=109, Chore="Bedroom Wash Windows", ChoreAssigned=DateTime.Now.AddDays(-11), IsCompleted = false},
-                new Chores(){ID=110, Chore="Bedroom Clean Mirrors", ChoreAssigned=DateTime.Now.AddDays(-8), IsCompleted = false},
-
-            };
-
-     
-            var Kdata3 = kList.Where(to => to.ChoreAssigned < DateTime.Now.AddDays(-8)).ToList();
-            var Kdata2 = kList.Where(to => to.ID >= 100).ToList();
-            var Kdata = kList.Where(to => to.Chore.Contains("Kitchen")).ToList();
-
+            /*
+             Variable to grab List of DataHolder Class
+             */
+            var dataBedroom = DataHolder.GetChores();
+            /*
+             Create the LINQ calls to grab data from the DataHolder Class
+             */
+            var Kdata3 = dataBedroom.Where(to => to.ChoreAssigned < DateTime.Now.AddDays(-8)).ToList();
+            var Kdata2 = dataBedroom.Where(to => to.ID >= 100).ToList();
+            var Kdata = dataBedroom.Where(to => to.Chore.Contains("Kitchen")).ToList();
+            /*
+             Now grab the variable called Kdata that created the LINQ call.
+             */ 
             viewModel.MyChores = Kdata;
-
+            /*
+             The viewMode was set via the ChoreViewModel class which created the List<>
+             */
             return View(viewModel);
         }
 
@@ -81,22 +58,10 @@ namespace ChoresProject.Controllers
             ViewBag.Message = "Welcome to the Bedroom Page";
             //Chore List Bedroom
             ChoreViewModel viewModel2 = new ChoreViewModel();
-            List<Chores> bList = new List<Chores>()
-            {
-                new Chores(){ID=100, Chore="Kitchen Clean Table", ChoreAssigned=DateTime.Now.AddDays(-7), IsCompleted = false},
-                new Chores(){ID=101, Chore="Kitchen Wash Dishes", ChoreAssigned=DateTime.Now.AddDays(-6), IsCompleted = false},
-                new Chores(){ID=102, Chore="Kitchen Sweep Floor", ChoreAssigned=DateTime.Now.AddDays(-3), IsCompleted = false},
-                new Chores(){ID=103, Chore="Kitchen Clean Stove", ChoreAssigned=DateTime.Now.AddDays(-2), IsCompleted = false},
-                new Chores(){ID=104, Chore="Kitchen Clean Refrigerator", ChoreAssigned=DateTime.Now.AddDays(-4), IsCompleted = false},
-                new Chores(){ID=105, Chore="Kitchen Paint Walls Blue", ChoreAssigned=DateTime.Now.AddDays(-1), IsCompleted = false},
-                new Chores(){ID=106, Chore="Bedroom Vacuum Floors", ChoreAssigned=DateTime.Now.AddDays(-9), IsCompleted = false},
-                new Chores(){ID=107, Chore="Bedroom Wash Sheets", ChoreAssigned=DateTime.Now.AddDays(-10), IsCompleted = false},
-                new Chores(){ID=108, Chore="Bedroom Paint Room Green", ChoreAssigned=DateTime.Now.AddDays(-9), IsCompleted = false},
-                new Chores(){ID=109, Chore="Bedroom Wash Windows", ChoreAssigned=DateTime.Now.AddDays(-11), IsCompleted = false},
-                new Chores(){ID=110, Chore="Bedroom Clean Mirrors", ChoreAssigned=DateTime.Now.AddDays(-8), IsCompleted = false},
-            };
 
-            var Bdata2 = bList.Where(to => to.ID == 100 || to.ID == 106).ToList();
+            var dataBedroom = DataHolder.GetChores();
+
+            var Bdata2 = dataBedroom.Where(to => to.ID == 100 || to.ID == 106).ToList();
 
             viewModel2.MyChores = Bdata2;
             

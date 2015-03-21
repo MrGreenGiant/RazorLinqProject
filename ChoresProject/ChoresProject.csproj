@@ -117,6 +117,7 @@
     </Compile>
     <Compile Include="Models\Chores.cs" />
     <Compile Include="Models\ChoreViewModel.cs" />
+    <Compile Include="Models\DataHolder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
