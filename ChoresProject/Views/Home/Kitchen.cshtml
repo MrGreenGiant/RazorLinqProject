@@ -1,0 +1,27 @@
+﻿@model ChoresProject.Models.ChoreViewModel 
+
+@{
+    ViewBag.Title = "Kitchen";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+<div>
+    <table class="table table-bordered table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Chores</th>
+            <th>Completed</th>
+            <th>Date Assigned</th>
+        </tr>
+        @foreach (var k in Model.MyChores)
+        {
+            <tr>
+                <td>@k.ID</td>
+                <td>@k.Chore</td>
+                <td>@k.IsCompleted</td>
+                <td>@k.ChoreAssigned</td>
+            </tr> 
+        }
+    </table>
+
+</div>
